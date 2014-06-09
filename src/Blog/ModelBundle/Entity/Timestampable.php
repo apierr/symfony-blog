@@ -1,16 +1,15 @@
 <?php
 
-namespace Blog\ModalBundle\Entity;
+namespace Blog\ModelBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Timestampable abstract class to define created behavior
  *
  * @ORM|MappedSuperclass
  */
-abstract  class Timestampable
+abstract class Timestampable
 {
     /**
      * @var \DateTime

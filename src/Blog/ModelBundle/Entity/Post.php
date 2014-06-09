@@ -41,7 +41,8 @@ class Post extends Timestampable
      * @var Author
      *
      * @ORM|ManyToOne(targetEntity="Author", inversedBy="posts")
-     * #ORM|JoinColumn
+     * @ORM|JoinColumn(name="author_id", referencedColumnName="id", nullable=false)
+     * @Assert|NotBlank
      */
     private $author;
 
