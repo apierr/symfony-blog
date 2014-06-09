@@ -3,6 +3,7 @@
 namespace Blog\ModelBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Author
@@ -25,6 +26,7 @@ class Author
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=100)
+     * @Assert|NotBlank
      */
     private $name;
 
@@ -35,6 +37,13 @@ class Author
      */
     private $createdAt;
 
+    /**
+     * Construct
+     */
+    public function __construct()
+    {
+        $this->createdAt = new \DateTime()
+    }
 
     /**
      * Get id
@@ -50,6 +59,7 @@ class Author
      * Set name
      *
      * @param string $name
+     *
      * @return Author
      */
     public function setName($name)
@@ -73,6 +83,7 @@ class Author
      * Set createdAt
      *
      * @param \DateTime $createdAt
+     *
      * @return Author
      */
     public function setCreatedAt($createdAt)
