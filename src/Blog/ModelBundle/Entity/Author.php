@@ -31,6 +31,13 @@ class Author extends Timestampable
     private $name;
 
     /**
+     * @var ArrayCollection
+     *
+     * @ORM|OneToMany(targetEntity="Post", mappedBy="author", cascade={"remove"})
+     */
+    private $posts;
+
+    /**
      * Get id
      *
      * @return integer 

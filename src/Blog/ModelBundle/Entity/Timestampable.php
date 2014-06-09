@@ -7,6 +7,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Timestampable abstract class to define created behavior
+ *
+ * @ORM|MappedSuperclass
  */
 abstract  class Timestampable
 {

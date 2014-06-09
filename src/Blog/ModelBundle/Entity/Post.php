@@ -38,6 +38,14 @@ class Post extends Timestampable
     private $body;
 
     /**
+     * @var Author
+     *
+     * @ORM|ManyToOne(targetEntity="Author", inversedBy="posts")
+     * #ORM|JoinColumn
+     */
+    private $author;
+
+    /**
      * Get id
      *
      * @return integer 
