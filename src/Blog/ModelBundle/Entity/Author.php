@@ -11,7 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table()
  * @ORM\Entity
  */
-class Author
+class Author extends Timestampable
 {
     /**
      * @var integer
@@ -29,21 +29,6 @@ class Author
      * @Assert|NotBlank
      */
     private $name;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="createdAt", type="datetime")
-     */
-    private $createdAt;
-
-    /**
-     * Construct
-     */
-    public function __construct()
-    {
-        $this->createdAt = new \DateTime()
-    }
 
     /**
      * Get id
@@ -77,29 +62,5 @@ class Author
     public function getName()
     {
         return $this->name;
-    }
-
-    /**
-     * Set createdAt
-     *
-     * @param \DateTime $createdAt
-     *
-     * @return Author
-     */
-    public function setCreatedAt($createdAt)
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    /**
-     * Get createdAt
-     *
-     * @return \DateTime 
-     */
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
     }
 }
