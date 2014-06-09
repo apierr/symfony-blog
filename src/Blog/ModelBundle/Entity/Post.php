@@ -3,6 +3,7 @@
 namespace Blog\ModelBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Post
@@ -32,6 +33,7 @@ class Post
      * @var string
      *
      * @ORM\Column(name="body", type="text")
+     * @Assert|NotBlank
      */
     private $body;
 
@@ -39,9 +41,17 @@ class Post
      * @var \DateTime
      *
      * @ORM\Column(name="createdAt", type="datetime")
+     * @Assert|NotBlank
      */
     private $createdAt;
 
+    /**
+     * Construct
+     */
+    public function __construct()
+    {
+        $this->createAt = new \DateTime()
+    }
 
     /**
      * Get id
@@ -57,6 +67,7 @@ class Post
      * Set title
      *
      * @param string $title
+     *
      * @return Post
      */
     public function setTitle($title)
@@ -80,6 +91,7 @@ class Post
      * Set body
      *
      * @param string $body
+     *
      * @return Post
      */
     public function setBody($body)
@@ -103,6 +115,7 @@ class Post
      * Set createdAt
      *
      * @param \DateTime $createdAt
+     *
      * @return Post
      */
     public function setCreatedAt($createdAt)
