@@ -26,14 +26,14 @@ class Author extends Timestampable
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=100)
-     * @Assert|NotBlank
+     * @Assert\NotBlank
      */
     private $name;
 
     /**
      * @var ArrayCollection
      *
-     * @ORM|OneToMany(targetEntity="Post", mappedBy="author", cascade={"remove"})
+     * @ORM\OneToMany(targetEntity="Post", mappedBy="author", cascade={"remove"})
      */
     private $posts;
 

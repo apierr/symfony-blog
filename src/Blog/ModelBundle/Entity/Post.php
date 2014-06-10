@@ -33,16 +33,16 @@ class Post extends Timestampable
      * @var string
      *
      * @ORM\Column(name="body", type="text")
-     * @Assert|NotBlank
+     * @Assert\NotBlank
      */
     private $body;
 
     /**
      * @var Author
      *
-     * @ORM|ManyToOne(targetEntity="Author", inversedBy="posts")
-     * @ORM|JoinColumn(name="author_id", referencedColumnName="id", nullable=false)
-     * @Assert|NotBlank
+     * @ORM\ManyToOne(targetEntity="Author", inversedBy="posts")
+     * @ORM\JoinColumn(name="author_id", referencedColumnName="id", nullable=false)
+     * @Assert\NotBlank
      */
     private $author;
 
