@@ -69,3 +69,29 @@ In order to create these methods for the new fields we can use a generator passi
 ```
 php app/console generate:doctrine:entities
 ```
+
+#### DoctrineMigrationsBundle
+In oder to install the DoctrineMigrationsBundle you need to edit the composer.json file:
+```
+    "require": {
+        "doctrine/migrations": "dev-master",
+        "doctrine/doctrine-migrations-bundle": "dev-master"
+    }
+```
+and then update the vendors:
+```
+php composer.phar update
+```
+
+* to look at the difference between our code and the database you can perform the following command:
+```
+php app/console doctrine:migrations:diff
+```
+This command generates a new migration file.
+This file contains all the SQL commands to perform the database update.
+It contains two methods, up and down. Down method is used for the rollback (revert the change). Up method is used to run the migration. 
+
+To run the migration:
+```
+php app/console doctrine:migrations:migrate
+```
