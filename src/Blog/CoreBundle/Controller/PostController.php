@@ -21,6 +21,6 @@ class PostController extends Controller
      */
     public function indexAction()
     {
+    	retun array();
     }
-
 }
