@@ -1,1 +1,4 @@
-Home: Inizio
+home: Home
+
+post:
+  plural: Posts
