@@ -38,6 +38,14 @@ class Author extends Timestampable
     private $posts;
 
     /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->posts = new ArrayCollection();
+    }
+
+    /**
      * Get id
      *
      * @return integer 
@@ -70,21 +78,15 @@ class Author extends Timestampable
     {
         return $this->name;
     }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->posts = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
     /**
      * Add posts
      *
      * @param \Blog\ModelBundle\Entity\Post $posts
+     *
      * @return Author
      */
-    public function addPost(\Blog\ModelBundle\Entity\Post $posts)
+    public function addPost(Post $posts)
     {
         $this->posts[] = $posts;
 
@@ -96,7 +98,7 @@ class Author extends Timestampable
      *
      * @param \Blog\ModelBundle\Entity\Post $posts
      */
-    public function removePost(\Blog\ModelBundle\Entity\Post $posts)
+    public function removePost(Post $posts)
     {
         $this->posts->removeElement($posts);
     }
