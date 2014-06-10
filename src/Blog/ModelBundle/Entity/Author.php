@@ -70,4 +70,44 @@ class Author extends Timestampable
     {
         return $this->name;
     }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->posts = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add posts
+     *
+     * @param \Blog\ModelBundle\Entity\Post $posts
+     * @return Author
+     */
+    public function addPost(\Blog\ModelBundle\Entity\Post $posts)
+    {
+        $this->posts[] = $posts;
+
+        return $this;
+    }
+
+    /**
+     * Remove posts
+     *
+     * @param \Blog\ModelBundle\Entity\Post $posts
+     */
+    public function removePost(\Blog\ModelBundle\Entity\Post $posts)
+    {
+        $this->posts->removeElement($posts);
+    }
+
+    /**
+     * Get posts
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPosts()
+    {
+        return $this->posts;
+    }
 }
