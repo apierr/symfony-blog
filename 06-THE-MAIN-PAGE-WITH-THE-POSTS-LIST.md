@@ -20,3 +20,13 @@ Action Route -> /
     	retun array();
     }
 ```
+
+#### Test
+
+* delete the test into ModelBundle
+* delete the default Controller Bundle into CoreBundle
+* code PHP standard for PostControllerTest adding comments
+* add an assert into PostControllerTest class
+```
+$this->assertTrue($client->getResponse()->isSuccessful(), 'The response was not successful');
+```
