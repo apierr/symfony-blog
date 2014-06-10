@@ -1,0 +1,71 @@
+### Setting up the database through Doctrine2
+
+In order to set up the database you can use the doctrine commands:
+
+* doctrine:generate:entity
+```
+php app/console doctrine:generate:entity 
+```
+
+You can fill out the following parameters:
+```
+ModelBundel:Post
+title string
+body text
+createdAt date time
+
+ModelBundel:Author
+name string 
+createdAt date time
+```
+
+* You add constraints to make some fields mandatory 
+```
+use Symfony\Component\Validator\Constraints as Assert
+```
+
+* In order to generate the post date automatically you need to add a constructor
+```
+/**
+ * Construct
+ */
+function public __construct()
+{
+	this->createdAt = new \DateTime();
+}
+```
+
+* Refactoring in order to remove code duplication:
+
+..* added “Timestampable abstract class” to avoid code duplication.
+
+* Add relationship between author and post
+
+In the Author class we add posts which is an ArrayCollection type
+and into doctrine directive it will be OneToMane relationship
+
+```
+    /** 
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="Post", mappedBy="author", cascade={"remove"})
+     */
+    private $posts;
+```
+
+* In the Post class we add an author which have as doctrine directive ManyToOne
+```
+    /**
+     * @var Author
+     *
+     * @ORM\ManyToOne(targetEntity="Author", inversedBy="posts")
+     * @ORM\JoinColumn(name="author_id", referencedColumnName="id", nullable=false)
+     * @Assert\NotBlank
+     */
+    private $author;
+```
+
+In order to create these methods for the new fields we can use a generator passing the bundle and the entity names
+```
+php app/console generate:doctrine:entities
+```
