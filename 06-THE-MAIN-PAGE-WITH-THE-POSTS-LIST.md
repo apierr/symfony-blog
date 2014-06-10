@@ -13,3 +13,10 @@ Action Route -> /
 
 * We can delete the default controller
 
+* to make the controller working we need to return something:
+```
+    public function indexAction()
+    {
+    	retun array();
+    }
+```
