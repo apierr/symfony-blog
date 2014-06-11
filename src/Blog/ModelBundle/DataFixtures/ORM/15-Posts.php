@@ -2,13 +2,14 @@
 
 namespace Blog\ModelBundle\DataFixtures\ORM;
 
-use Doctrine\Common\DataFixtures\AbstractFixtures;
-use Doctrine\Common\DataFixtures\OrderedFixturesInterface;
+use Doctrine\Common\DataFixtures\AbstractFixture;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
+use Doctrine\Common\Persistence\ObjectManager;
 
 /** 
  * Fixture for the Post Entity
  */
-class Posts extends AbstractFixtures implements OrderedFixturesInterface
+class Posts extends AbstractFixture implements OrderedFixtureInterface
 {
 	/**
 	 * {@InheritDoc}
@@ -60,6 +61,6 @@ class Posts extends AbstractFixtures implements OrderedFixturesInterface
 			array(
 				'name' => $name
 			)
-		):
+		);
 	}
 }

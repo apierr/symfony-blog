@@ -2,13 +2,15 @@
 
 namespace Blog\ModelBundle\DataFixtures\ORM;
 
-use Doctrine\Common\DataFixtures\AbstractFixtures;
-use Doctrine\Common\DataFixtures\OrderedFixturesInterface;
+use Blog\ModelBundle\Entity\Author;
+use Doctrine\Common\DataFixtures\AbstractFixture;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
+use Doctrine\Common\Persistence\ObjectManager;
 
 /** 
  * Fixture for the Author Entity
  */
-class Authors extends AbstractFixtures implements OrderedFixturesInterface
+class Authors extends AbstractFixture implements OrderedFixtureInterface
 {
 	/**
 	 * {@InheritDoc}
