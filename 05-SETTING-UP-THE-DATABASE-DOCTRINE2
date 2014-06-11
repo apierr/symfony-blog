@@ -117,3 +117,58 @@ public function registerBundles()
     // ...
 }
 ```
+* Create a fixture file for every entries:
+In ModelBundle you create a directory named DataFixtures/ORM
+I assign a number to the file which will be the order in which there will be executed 
+and a descriptive name.
+The 10-Authors.php willl be:
+```
+<?php
+
+namespace Blog\ModelBundle\DataFixtures\ORM;
+
+use Doctrine\Common\DataFixtures\AbstractFixtures;
+use Doctrine\Common\DataFixtures\OrderedFixturesInterface;
+
+/** 
+ * Fixture for the Author Entity
+ */
+class Authors extends AbstractFixtures implements OrderedFixturesInterface
+{
+    /**
+     * {@InheritDoc}
+     */
+    public function getOrder()
+    {
+        return 10;
+    }
+
+    /**
+     * {@InheritDoc}
+     */
+    public function load(ObjectManager $manager)
+    {
+        $a1 = new Author();
+        $a1->setName('Antonio');
+
+        $a2 = new Author();
+        $a2->setName('Leonardo');
+
+        $a3 = new Author();
+        $a3->setName('Francesca');
+
+        $manager->persist($a1);
+        $manager->persist($a2);
+        $manager->persist($a3);
+
+        $manager->flush();
+    }
+}
+```
+
+Likewise you need to generate a file for the Posts which name will be 15-Posts.php
+
+* Now we need to load the fixtures to our database with the command:
+```
+doctrine:fixtures:load
+```
