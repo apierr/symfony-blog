@@ -3,6 +3,7 @@
 namespace Blog\ModelBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -42,6 +43,8 @@ class Author extends Timestampable
      */
     public function __construct()
     {
+        parent::__construct();
+
         $this->posts = new ArrayCollection();
     }
 
