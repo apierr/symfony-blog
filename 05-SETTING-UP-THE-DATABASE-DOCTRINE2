@@ -95,3 +95,25 @@ To run the migration:
 ```
 php app/console doctrine:migrations:migrate
 ```
+
+#### Fixtures
+* We need to install the bundle about fixture.  Add the following to your composer.json file:
+```
+{
+    "require": {
+        "doctrine/doctrine-fixtures-bundle": "dev-master"
+    }
+}
+```
+Finally, register the Bundle DoctrineFixturesBundle in app/AppKernel.php.
+```
+public function registerBundles()
+{
+    $bundles = array(
+        // ...
+        new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
+        // ...
+    );
+    // ...
+}
+```
