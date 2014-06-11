@@ -2,6 +2,7 @@
 
 namespace Blog\ModelBundle\DataFixtures\ORM;
 
+use Blog\ModelBundle\Entity\Post;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
