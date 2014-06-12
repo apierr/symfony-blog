@@ -90,6 +90,30 @@ class Post extends Timestampable
     }
 
     /**
+     * Set slug
+     *
+     * @param string $slug
+     *
+     * @return Post
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string 
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
      * Set body
      *
      * @param string $body
@@ -134,28 +158,5 @@ class Post extends Timestampable
     public function getAuthor()
     {
         return $this->author;
-    }
-
-    /**
-     * Set slug
-     *
-     * @param string $slug
-     * @return Post
-     */
-    public function setSlug($slug)
-    {
-        $this->slug = $slug;
-
-        return $this;
-    }
-
-    /**
-     * Get slug
-     *
-     * @return string 
-     */
-    public function getSlug()
-    {
-        return $this->slug;
     }
 }
