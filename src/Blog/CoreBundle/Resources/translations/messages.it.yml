@@ -1,10 +1,11 @@
+by: by
+
 home: Home
 
-by: by
+post:
+  latest: Latest posts
+  on: Posted on
+  plural: Posts
 
 read:
   more: Read more
-
-post:
-  plural: Posts
-  on: Posted on
