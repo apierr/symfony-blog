@@ -328,3 +328,21 @@ To check that it works as before we can run:
 php app/console doctrine:fixtures:load
 ```
 
+* Add updateAt field to Author and Post table.
+To do this, you can edit just the timestampable class adding the new filed, getter and setter for the new field.
+```
+    /**
+     * @var \DateTime
+     *
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
+     */
+    private $updatedAt;
+```
+
+Then you can perform the migration:
+```
+php app/console doctrine:migrations:diff
+php app/console doctrine:migrations:migrate
+```
+
