@@ -72,3 +72,8 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+# Doctrine Extension Configuration
+stof_doctrine_extensions:
+    class:
+        sluggable: true

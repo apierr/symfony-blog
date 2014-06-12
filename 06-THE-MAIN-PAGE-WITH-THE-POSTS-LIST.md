@@ -286,3 +286,16 @@ and to your application kernel:
 ```
 new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
 ```
+* I will enable the sluggable behavior into `app/config/config.yml`
+```
+
+```
+* Add slug to the Post entity
+```
+
+```
+and then I will generate the getter and setter by the command:
+```
+php app/console generate:doctrine:entities ModelBundle:Post
+```
+

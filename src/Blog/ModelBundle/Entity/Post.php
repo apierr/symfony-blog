@@ -4,6 +4,7 @@ namespace Blog\ModelBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Post
@@ -28,6 +29,14 @@ class Post extends Timestampable
      * @ORM\Column(name="title", type="string", length=255)
      */
     private $title;
+
+    /**
+     * @var string
+     *
+     * @Gedmo\Slug(fields={"title"}, unique=false)
+     * @ORM\Column(length=255)
+     */
+    private $slug;
 
     /**
      * @var string
