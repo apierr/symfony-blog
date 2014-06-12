@@ -25,8 +25,13 @@ class PostController extends Controller
             ->getRepository('ModelBundle:Post')
             ->findAll();
 
+        $latestPosts = $this->getDoctrine()
+            ->getRepository('ModelBundle:Post')
+            ->findLatest(5);
+
     	return array(
-            'posts' => $posts
+            'posts'       => $posts,
+            'latestPosts' => $latestPosts
         );
     }
 }
