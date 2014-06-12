@@ -299,3 +299,13 @@ and then I will generate the getter and setter by the command:
 php app/console generate:doctrine:entities ModelBundle:Post
 ```
 
+* Perform a database migration:
+```
+php app/console doctrine:migrations:diff
+php app/console doctrine:migrations:migrate
+```
+
+* To fill the database since there is a new field named slug we can run:
+```
+php app/console doctrine:fixtures:load
+```
