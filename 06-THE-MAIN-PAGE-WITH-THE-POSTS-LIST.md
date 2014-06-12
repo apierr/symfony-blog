@@ -277,4 +277,12 @@ aside h3 {
 
 ```
 
-
+#### DoctrineExtensions's features
+* Add stof/doctrine-extensions-bundle to composer.json
+```
+"stof/doctrine-extensions-bundle": "dev-master",
+```
+and to your application kernel:
+```
+new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
+```
