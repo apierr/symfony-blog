@@ -75,5 +75,7 @@ swiftmailer:
 
 # Doctrine Extension Configuration
 stof_doctrine_extensions:
-    class:
-        sluggable: true
+    orm:
+        default:
+            timestampable: true
+            sluggable: true

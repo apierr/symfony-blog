@@ -309,3 +309,22 @@ php app/console doctrine:migrations:migrate
 ```
 php app/console doctrine:fixtures:load
 ```
+
+#### Opening the posts
+* Exploiting the timestampable behavior of doctrine-extensions-bundle.
+To exploit the timespampable behavior we add the key `timespampable: true` to config.yml
+and we delete the constructor from the Timestampable class editing  Timestampable.php in this way:
+```
+    /**
+     * @var string
+     *
+     * @Gedmo\Slug(fields={"title"}, unique=false)
+     * @ORM\Column(length=255)
+     */
+    private $slug;
+```
+To check that it works as before we can run:
+```
+php app/console doctrine:fixtures:load
+```
+

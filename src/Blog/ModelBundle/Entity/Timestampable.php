@@ -2,6 +2,7 @@
 
 namespace Blog\ModelBundle\Entity;
 
+use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -14,17 +15,10 @@ abstract class Timestampable
     /**
      * @var \DateTime
      *
+     * @Gedmo\Timestampable(on="create")
      * @ORM\Column(name="createdAt", type="datetime")
      */
     private $createdAt;
-
-    /**
-     * Construct
-     */
-    public function __construct()
-    {
-        $this->createdAt = new \DateTime();
-    }
 
     /**
      * Set createdAt
