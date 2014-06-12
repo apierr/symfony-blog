@@ -69,3 +69,106 @@ In order to create these methods for the new fields we can use a generator passi
 ```
 php app/console generate:doctrine:entities
 ```
+
+#### DoctrineMigrationsBundle
+In oder to install the DoctrineMigrationsBundle you need to edit the composer.json file:
+```
+    "require": {
+        "doctrine/migrations": "dev-master",
+        "doctrine/doctrine-migrations-bundle": "dev-master"
+    }
+```
+and then update the vendors:
+```
+php composer.phar update
+```
+
+* to look at the difference between our code and the database you can perform the following command:
+```
+php app/console doctrine:migrations:diff
+```
+This command generates a new migration file.
+This file contains all the SQL commands to perform the database update.
+It contains two methods, up and down. Down method is used for the rollback (revert the change). Up method is used to run the migration. 
+
+To run the migration:
+```
+php app/console doctrine:migrations:migrate
+```
+
+#### Fixtures
+* We need to install the bundle about fixture.  Add the following to your composer.json file:
+```
+{
+    "require": {
+        "doctrine/doctrine-fixtures-bundle": "dev-master"
+    }
+}
+```
+Finally, register the Bundle DoctrineFixturesBundle in app/AppKernel.php.
+```
+public function registerBundles()
+{
+    $bundles = array(
+        // ...
+        new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
+        // ...
+    );
+    // ...
+}
+```
+* Create a fixture file for every entries:
+In ModelBundle you create a directory named DataFixtures/ORM
+I assign a number to the file which will be the order in which there will be executed 
+and a descriptive name.
+The 10-Authors.php willl be:
+```
+<?php
+
+namespace Blog\ModelBundle\DataFixtures\ORM;
+
+use Doctrine\Common\DataFixtures\AbstractFixtures;
+use Doctrine\Common\DataFixtures\OrderedFixturesInterface;
+
+/** 
+ * Fixture for the Author Entity
+ */
+class Authors extends AbstractFixtures implements OrderedFixturesInterface
+{
+    /**
+     * {@InheritDoc}
+     */
+    public function getOrder()
+    {
+        return 10;
+    }
+
+    /**
+     * {@InheritDoc}
+     */
+    public function load(ObjectManager $manager)
+    {
+        $a1 = new Author();
+        $a1->setName('Antonio');
+
+        $a2 = new Author();
+        $a2->setName('Leonardo');
+
+        $a3 = new Author();
+        $a3->setName('Francesca');
+
+        $manager->persist($a1);
+        $manager->persist($a2);
+        $manager->persist($a3);
+
+        $manager->flush();
+    }
+}
+```
+
+Likewise you need to generate a file for the Posts which name will be 15-Posts.php
+
+* Now we need to load the fixtures to our database with the command:
+```
+doctrine:fixtures:load
+```
