@@ -260,4 +260,21 @@ This block will display the list of the posts title in the sidebar.
 {% endblock %}
 ```
 
+* Add style to the sidebar listing the posts
+```
+aside {
+	background-color: #c3c3c3;
+	border: 1px solid #b5b5b5;
+	float: right;
+	margin: 5px;
+	padding: 5pxp 15px;
+	width: 30%;
+}
+
+aside h3 {
+	font-weight: bold;
+}
+
+```
+
 
