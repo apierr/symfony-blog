@@ -4,7 +4,7 @@ imports:
 
 framework:
     #esi:             ~
-    #translator:      { fallback: "%locale%" }
+    translator:      { fallback: "%locale%" }
     secret:          "%secret%"
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -23,6 +23,11 @@ framework:
         handler_id:  ~
     fragments:       ~
     http_method_override: true
+
+services:
+    text.twig.extension:
+         class: Twig_Extensions_Extension_Text
+         tags: [{ name: twig.extension }]
 
 # Twig Configuration
 twig:
@@ -67,3 +72,10 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+# Doctrine Extension Configuration
+stof_doctrine_extensions:
+    orm:
+        default:
+            timestampable: true
+            sluggable: true
