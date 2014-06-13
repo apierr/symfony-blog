@@ -26,7 +26,7 @@ class AuthorRepository extends EntityRepository {
 	private function getQueryBuilder()
 	{
 
-		$em = $this->getEntityRepository();
+		$em = $this->getEntityManager();
 
 		$qb = $em->getRepository('ModelBundle:Author')
 			->createQueryBuilder('a');

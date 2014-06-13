@@ -16,7 +16,19 @@ class AuthorControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/show');
+        /** @var Author $author */
+        $author = $client->getContainer()
+        	->get('doctrine')
+        	->getManager()
+        	->getRepository('ModelBundle:Author')
+        	->findFirst();
+        $authorPostCount = $author->getPosts()->count();
+
+        $crawler = $client->request('GET', '/author'.$author->getSlug());
+
+        $this->assertTrue($client->getResponse()->isSuccessful(), 'The response was not successful');
+
+        $this->assertTrue($authorPostCount, $crawler->filter('h2'), 'There should be '.$authorPostCount.' posts');
     }
 
 }

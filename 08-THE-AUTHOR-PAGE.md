@@ -89,6 +89,34 @@ php app/console doctrine:migrations:migrate
 php app/console doctrine:fixtures:load
 ```
 
+#### Writing a test
+
+* I will edit the AuthorControllerTest.php
+```
+	/**
+	 * Test show author
+	 */
+    public function testShow()
+    {
+        $client = static::createClient();
+
+        /** @var Author $author */
+        $author = $client->getContainer()
+        	->get('doctrine')
+        	->getManager()
+        	->getRepository('ModelBundle:Author')
+        	->findFirst();
+        $authorPostCount = $author->getPosts()->count();
+
+        $crawler = $client->request('GET', '/author'.$author->getSlug());
+
+        $this->assertTrue($client->getResponse()->isSuccessful(), 'The response was not successful');
+
+        $this->assertTrue($authorPostCount, $crawler->filter('h2'), 'There should be '.$authorPostCount.' posts');
+    }
+```
+If I run the test it will fail, so now I need to develop it.
+
  
 
 
