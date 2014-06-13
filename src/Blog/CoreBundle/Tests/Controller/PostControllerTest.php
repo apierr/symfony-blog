@@ -41,6 +41,6 @@ class PostControllerTest extends WebTestCase
 
         $this->assertTrue($client->getResponse()->isSuccessful(), 'The response was not successful');
 
-        $this->assertEquals($post->getTitle(), $crawler->filter('h1')->test(), 'Invalid post title');
+        $this->assertEquals($post->getTitle(), $crawler->filter('h1')->text(), 'Invalid post title');
     }
 }

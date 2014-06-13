@@ -46,9 +46,9 @@ class PostController extends Controller
      * @Route("/{slug}")
      * @Template()
      */
-    public function showAction()
+    public function showAction($slug)
     {
-        $posts = $this->getDoctrine()
+        $post = $this->getDoctrine()
             ->getRepository('ModelBundle:Post')
             ->findOneBy(
                 array(
