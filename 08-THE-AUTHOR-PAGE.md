@@ -84,6 +84,11 @@ php app/console doctrine:migrations:diff
 php app/console doctrine:migrations:migrate
 ``` 
 
+* To load the fixtures for the slug field you need just to run:
+```
+php app/console doctrine:fixtures:load
+```
+
  
 
 
