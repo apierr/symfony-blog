@@ -16,7 +16,7 @@ class AuthorController extends Controller
      *
      * @param string $slug
      *
-     * @throws NotFoundException
+     * @throws NotFoundHttpException
      * @return array
      *
      * @Route("/author/{slug}")
@@ -34,7 +34,7 @@ class AuthorController extends Controller
     		throw $this->createNotFoundException('Author was not found');
     	}
 
-    	$author = $this->getDoctrine()->getRepository('ModelBundle:Post')->findBy(
+    	$posts = $this->getDoctrine()->getRepository('ModelBundle:Post')->findBy(
     		array(
     			'author' => $author
     		)

@@ -168,8 +168,33 @@ class AuthorController extends Controller
 
 }
 ```
-* I will edit the template
+* I will edit the file template named Author/show.html.twig.
+```
+{% extends "CoreBundle::layout.html.twig" %}
 
+{% block title %}{{ 'post.by.author' | trans({ '%name%': author.name }) }}{% endblock %}
+
+{% block sidebar %}
+	<aside>
+		<h3>{{ 'post.by' | trans }}</h3>
+		<p>{{ author.name }}</p>
+	</aside>
+{% endblock %}
+
+{% block section %}
+	{% for post in posts %}
+		{{ include('CoreBundle:Post:_post.html.twig.html', {post: post}) }}
+	{% endfor %}
+{% endblock %}
+
+```
+
+* Then I will run the test through the command `phpunit -c app`.
+
+* I will set the attributes named href to display the author page editing the files named _post.html.twig and show.html.twig.
+```
+href="{{ path('blog_core_author_show', { slug : 'post.author.slug' }) }}"
+```
  
 
 

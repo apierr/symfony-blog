@@ -11,6 +11,6 @@
 
 {% block section %}
 	{% for post in posts %}
-		{{ include('CoreBundle:Post:_post.html.twig.html', {post: post}) }}
+		{{ include('CoreBundle:Post:_post.html.twig', {post: post}) }}
 	{% endfor %}
 {% endblock %}
