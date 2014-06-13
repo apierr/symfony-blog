@@ -4,12 +4,12 @@ namespace Blog\ModelBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 
-/** 
+/**
  * Class AuthorRepository
  */
 class AuthorRepository extends EntityRepository {
 
-	/** 
+	/**
 	 * Find the first author
 	 *
 	 * @return Author
