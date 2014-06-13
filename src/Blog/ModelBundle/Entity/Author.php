@@ -90,6 +90,30 @@ class Author extends Timestampable
     }
 
     /**
+     * Set slug
+     *
+     * @param string $slug
+     *
+     * @return Author
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string 
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
      * Add posts
      *
      * @param \Blog\ModelBundle\Entity\Post $posts
@@ -121,28 +145,5 @@ class Author extends Timestampable
     public function getPosts()
     {
         return $this->posts;
-    }
-
-    /**
-     * Set slug
-     *
-     * @param string $slug
-     * @return Author
-     */
-    public function setSlug($slug)
-    {
-        $this->slug = $slug;
-
-        return $this;
-    }
-
-    /**
-     * Get slug
-     *
-     * @return string 
-     */
-    public function getSlug()
-    {
-        return $this->slug;
     }
 }
