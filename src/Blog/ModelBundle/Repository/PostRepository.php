@@ -39,11 +39,6 @@ class PostRepository extends EntityRepository
 		return $qb->getQuery()->getSingleResult();
 	}
 
-	/**
-	 * Find latest
-	 *
-	 * @param int $num How many posts to get
-	 */
 	private function getQueryBuilder()
 	{
 		$em = $this->getEntityManager();
