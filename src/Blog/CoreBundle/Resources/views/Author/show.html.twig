@@ -12,5 +12,7 @@
 {% block section %}
 	{% for post in posts %}
 		{{ include('CoreBundle:Post:_post.html.twig', {post: post}) }}
+	{% else %}
+		<p>{{ 'author.empty.post' | trans }}</p>
 	{% endfor %}
 {% endblock %}

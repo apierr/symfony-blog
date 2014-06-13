@@ -195,6 +195,14 @@ class AuthorController extends Controller
 ```
 href="{{ path('blog_core_author_show', { slug : 'post.author.slug' }) }}"
 ```
+
+* Handle the case when the author is missing.
+We need to edit the view show.html.twig into Author directory.
+```
+	{% for post in posts %}
+		{{ include('CoreBundle:Post:_post.html.twig', {post: post}) }}
+	{% else %}
+		<p>{{ 'author.empty.post' | trans }}</p>
+	{% endfor %}
+```
  
-
-
