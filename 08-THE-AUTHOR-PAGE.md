@@ -72,10 +72,17 @@ class AuthorRepository extends EntityRepository {
      */
     private $slug;
 ```
+
 * Add a setter and getter for the slug field running the following command:
 ```
 php app/console doctrine:generate:entities ModelBundle:Author
 ```
+
+* We create a migration:
+```
+php app/console doctrine:migrations:diff
+php app/console doctrine:migrations:migrate
+``` 
 
  
 
