@@ -1,4 +1,5 @@
-author: Author
+author:
+  empty.post: This user did not write any post yet.
 
 by: by
 
@@ -8,6 +9,8 @@ post:
   latest: Latest posts
   on: Posted on
   plural: Posts
+  by: Post by
+  by.author: Posts by %name%
 
 read:
   more: Read more

@@ -7,13 +7,13 @@
 		<h3>{{ 'post.latest' | trans }}</h3>
 
 		{% for post in posts %}
-			<p><a href="<a href="{{ path('blog_core_post_show', { slug: post.slug }) }}">{{ post.title }}</a></p>
+			<p><a href="{ path('blog_core_post_show', { slug: post.slug }) }}">{{ post.title }}</a></p>
 		{% endfor %}
 	</aside>
 {% endblock %}
 
 {% block section %}
 	{% for post in posts %}
-		{{ include('CoreBundle:Post:_post.html.twig', {post: post}) }}
+		{{ include('CoreBundle:Post:_post.html.twig', { post: post }) }}
 	{% endfor %}
 {% endblock %}
