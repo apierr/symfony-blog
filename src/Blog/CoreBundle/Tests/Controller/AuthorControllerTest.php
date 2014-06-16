@@ -24,7 +24,7 @@ class AuthorControllerTest extends WebTestCase
         	->findFirst();
         $authorPostCount = $author->getPosts()->count();
 
-        $crawler = $client->request('GET', '/author'.$author->getSlug());
+        $crawler = $client->request('GET', '/author/'.$author->getSlug());
 
         $this->assertTrue($client->getResponse()->isSuccessful(), 'The response was not successful');
 

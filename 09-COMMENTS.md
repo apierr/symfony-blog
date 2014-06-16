@@ -45,3 +45,64 @@ php app/console doctrine:migrations:migrate
 ```
 
 * Fixture for the comments.
+For the comments I will create a fixture stored in a file named 20-Comments.php
+```
+<?php
+
+namespace Blog\ModelBundle\DataFixtures\ORM;
+
+use Doctrine\Common\DataFixtures\AbstractFixture;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
+use Doctrine\Common\Persistence\ObjectManager;
+
+/**
+ * Fixtures for the Comment Entity
+ */
+class Comments extends AbstractFixtures implements OrderedFixturesInterface
+{
+	/**
+	 * {@inheritDoc}
+	 */
+	public function getOrder()
+	{
+		return 20;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public function load(ObjectManager $manager)
+	{
+		$posts = $manager->getRepository('ModelBundle:Post')->findAll();
+
+		$comments = array(
+			0 => '',
+			1 => '',
+			2 => ''
+		);
+
+		$i = 0;
+
+		foreach($posts as $post) {
+			$comment = new Comment();
+			$comment->setAuthorName('someone');
+			$comment->setBody($comments[$i++]);
+			$comment->setPost($post);
+
+			$manager->persist($comment);
+		}
+
+		$manager->flush();
+	}
+}
+```
+* I will load this fixture running the following command:
+```
+php app/console doctrine:fixture:load
+```
+
+* I write a test to show the comments editing the file named PostControllerTest.php
+```
+$this->assertGreaterThanOrEqual(1, $crawler->filter('article.comment')->count(), 'There should be at least 1 comment.');
+
+```
