@@ -37,3 +37,11 @@ php app/console doctrine:generate:entities ModelBundle:Comment
 ```
 php app/console doctrine:generate:entities ModelBundle:Post
 ```
+
+* I will transfer this change made on entities to the database.
+```
+php app/console doctrine:migrations:diff
+php app/console doctrine:migrations:migrate
+```
+
+* Fixture for the comments.
