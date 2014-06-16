@@ -20,5 +20,20 @@ php app/console generate
 
 * Generates entity classes and method for the comment entity:
 ```
-php app/console doctrine:generate:entities
+php app/console doctrine:generate:entities ModelBundle:Comment
+```
+
+* Add relationship with the comment in the post entity which file name is Post.php
+```
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="post", cascade={"remove"})
+     */
+    private $comments;
+```
+
+* I will generate entities for Post 
+```
+php app/console doctrine:generate:entities ModelBundle:Post
 ```
