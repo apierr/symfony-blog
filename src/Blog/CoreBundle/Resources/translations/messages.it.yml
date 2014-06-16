@@ -3,7 +3,12 @@ author:
 
 by: by
 
+comment:
+  plural: comments
+
 home: Home
+
+on: on
 
 post:
   latest: Latest posts

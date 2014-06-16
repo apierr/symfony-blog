@@ -28,7 +28,7 @@ class AuthorControllerTest extends WebTestCase
 
         $this->assertTrue($client->getResponse()->isSuccessful(), 'The response was not successful');
 
-        $this->assertTrue($authorPostCount, $crawler->filter('h2'), 'There should be '.$authorPostCount.' posts');
+        $this->assertCount($authorPostCount, $crawler->filter('h2'), 'There should be '.$authorPostCount.' posts');
     }
 
 }

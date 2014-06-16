@@ -101,8 +101,36 @@ class Comments extends AbstractFixtures implements OrderedFixturesInterface
 php app/console doctrine:fixture:load
 ```
 
-* I write a test to show the comments editing the file named PostControllerTest.php
+* I will write a test to show the comments editing the file named PostControllerTest.php
 ```
 $this->assertGreaterThanOrEqual(1, $crawler->filter('article.comment')->count(), 'There should be at least 1 comment.');
 
 ```
+
+* I will edit Post/show.html.twig to display the comments using a partial which file name will be `_comment.html.twig`:
+
+```
+
+	<a id="comments"></a>
+	<h2>{{ 'comment.plural' | trans }}</h2>
+
+	{% for comment in post.comments %}
+		{{ include('CoreBundle:Post:_comment.html.twig', { comment: comment }) }}
+	{% endfor %}
+```
+
+The file `_comment.html.twig` will look like this:
+```
+<article class="comment">
+	<header>
+		<p>
+			{{ 'on' | trans | capitalize }} <time datetime="{{ comment.createdAt | date('c') }}">{{ comment.createdAt | date }}</time>
+			{{ 'by' | trans }} {{ comment.authorName }}
+		</p>
+	</header>
+
+	<p>{{ comment.body | nl2br }}</p>
+</article>
+```
+
+
