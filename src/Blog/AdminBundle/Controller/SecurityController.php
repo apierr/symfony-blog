@@ -1,13 +1,3 @@
-### Setting up security for the administration zone
-
-#### Creation of AdminBundel
-*  I will generate a new bundle named AdminBundle
-```
-php app/console generate:bundle
-```
-* Login Controller.
-In order to handle the authentication I will implement a specific controller named SecurityController.php.
-```
 <?php
 
 namespace Blog\AdminBundle\Controller;
@@ -51,14 +41,4 @@ class SecurityController extends Controller
 			);
 		);
 	}
-
-	/**
-	 * Login check
-	 *
-	 * @Route('/login_check')
-	 */
-	public function loginCheckAction()
-	{
-	}
 }
-```
