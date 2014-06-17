@@ -6,25 +6,24 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
+/**
+ * Class CommentType
+ */
 class CommentType extends AbstractType
 {
-        /**
-     * @param FormBuilderInterface $builder
-     * @param array $options
+    /**
+     * {@inheritDoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('createdAt')
-            ->add('updatedAt')
-            ->add('authorName')
-            ->add('body')
-            ->add('post')
-        ;
+            ->add('authorName', null, array('label' => 'name'))
+            ->add('body', null, array('label' => 'comment.singular'))
+            ->add('post', 'submit', array('label' => 'send'));
     }
     
     /**
-     * @param OptionsResolverInterface $resolver
+     * {@inheritDoc}
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
@@ -34,7 +33,7 @@ class CommentType extends AbstractType
     }
 
     /**
-     * @return string
+     * {@inheritDoc}
      */
     public function getName()
     {

@@ -4,9 +4,12 @@ author:
 by: by
 
 comment:
-  plural: comments
+  plural: Comments
+  singular: Comment
 
 home: Home
+
+name: Name
 
 on: on
 
@@ -20,3 +23,5 @@ post:
 
 read:
   more: Read more
+
+send: Send

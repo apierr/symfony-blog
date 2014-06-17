@@ -188,5 +188,16 @@ I will edit `PostControllerTest.php`.
 ```
 
 #### Form type
-I will create a new form type class based on a Doctrine entity passing the parameter `ModelBundle:Comment` to `php app/console doctrine:generate:form` command.
+I will create a new form type class based on a Doctrine entity passing the parameter `ModelBundle:Comment to `php app/console doctrine:generate:form` command.
+I will change the generated form type which file is named `CommentType.php` in this way.
+```
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        $builder
+            ->add('authorName', null, array('label' => 'name'))
+            ->add('body', null, array('label' => 'comment.singular'))
+            ->add('post', 'submit', array('label' => 'send'));
+    }
+```
+
 
