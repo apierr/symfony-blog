@@ -116,3 +116,9 @@ form ul li {
 	list-style-type: none;
 	color: #ff0000;
 }
+
+p.session-message {
+	background-color: #007b00;
+	color: #fff; 
+	padding: 5px;
+}

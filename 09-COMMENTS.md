@@ -236,7 +236,7 @@ I will change the generated form type which file is named `CommentType.php` in 
 	{{ form(form, {action: path('blog_core_post_createcomment', {slug: post.slug}) ~ '#comments' }) }}
 ```
 
-* I will edit the file named main.css to improve to look and feel of the comment form.
+* I will edit the file named `main.css to improve the look and feel of the comment form.
 ```
 form input {
 	width: 300px;
@@ -256,5 +256,69 @@ form ul li {
 	list-style-type: none;
 	color: #ff0000;
 }
+```
+
+* Create the form creation.
+I will edit the PostController in oder to implement the form creation.
+```
+    /**
+     * Create comment
+     *
+     * @param Request $request
+     * @param string $slug
+     *
+     * @throws NotFoundHttpException
+     * @return array
+     *
+     * @Route("/{slug}/create-comment")
+     * @Method("POST")
+     * @Template("CoreBundle:Post:show.html.twig")
+     */
+    public function createCommentAction(Request $request, $slug)
+    {
+        $post = $this->getDoctrine()
+            ->getRepository('ModelBundle:Post')
+            ->findOneBy(
+                array(
+                    'slug' => $slug
+                )
+        );
+
+        if (null === $post) {
+            throw $this->createNotFoundHttpException('Post was not found');
+        }
+
+        $comment = new Comment();
+        $comment->setPost($post);
+
+        $form = $this->createForm(new CommentType, $comment);
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $this->getDoctrine()->getManager()->persist($comment);
+            $this->getDoctrine()->getManager()->flush();
+            $this->get('session')->getFlashBag()->add('success', 'Your comment was submit successfully');
+
+            return $this.redirect($this->generateUrl('blog_core_post_show'), array('slug' => $post->getSlug()));
+        }
+
+        return array(
+            'post' => $post,
+            'form' => $form->createView()
+        );
+    }
+```
+* Setup the confirmation message.
+To display the confirmation message after posting the comment I will edit the file placed into `Post/layout.html.twig`.
+```
+	<section>
+		{% for type, message in app.session.flashbag.all() %}
+			{% for message in messages %}
+				<p class="session-message">{{ message }}</p>
+			{% endfor %}
+		{% endfor %}
+
+		{% block section %}{% endblock %}
+	</section>
 ```
 
