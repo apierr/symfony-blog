@@ -24,11 +24,11 @@ class AuthorControllerTest extends WebTestCase
         	->findFirst();
         $authorPostCount = $author->getPosts()->count();
 
-        $crawler = $client->request('GET', '/author'.$author->getSlug());
+        $crawler = $client->request('GET', '/author/'.$author->getSlug());
 
         $this->assertTrue($client->getResponse()->isSuccessful(), 'The response was not successful');
 
-        $this->assertTrue($authorPostCount, $crawler->filter('h2'), 'There should be '.$authorPostCount.' posts');
+        $this->assertCount($authorPostCount, $crawler->filter('h2'), 'There should be '.$authorPostCount.' posts');
     }
 
 }

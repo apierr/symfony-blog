@@ -3,14 +3,25 @@ author:
 
 by: by
 
+comment:
+  plural: Comments
+  singular: Comment
+
 home: Home
 
+name: Name
+
+on: on
+
 post:
+  by: Post by
+  by.author: Posts by %name%
+  comments: '{0} No comments|{1} %count% comment|]1,Inf] %count% comments'
   latest: Latest posts
   on: Posted on
   plural: Posts
-  by: Post by
-  by.author: Posts by %name%
 
 read:
   more: Read more
+
+send: Send
