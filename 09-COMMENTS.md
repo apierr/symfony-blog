@@ -200,4 +200,61 @@ I will change the generated form type which file is named `CommentType.php` in 
     }
 ```
 
+##### Post Controller.
+* I will edit the PostController file named `PostController.php` to sent to the template the new form view.
+```
+        $form = $this->createForm(new CommentType());
+
+        return array(
+            'post' => $post,
+            'form' => $form->createView()
+        );
+```
+* I will edit the PostController file named `PostController.php` to create a new action named `createCommentAction`.
+```
+    /**
+     * Create comment
+     *
+     * @param Request $request
+     * @param string $slug
+     *
+     * @throws NotFoundHttpException
+     * @return array
+     *
+     * @Route("/{slug}/create-comment")
+     * @Method("POST")
+     * @Template("CoreBundle:Post:show.html.twig")
+     */
+    public function createCommentAction(Request $request, $slug)
+    {
+        return array();
+    }
+```
+* I will edit the file named `Post/show.html.twig`to display the form.
+```
+	<h4>{{ 'comment.write' | trans }}:</h4>
+	{{ form(form, {action: path('blog_core_post_createcomment', {slug: post.slug}) ~ '#comments' }) }}
+```
+
+* I will edit the file named main.css to improve to look and feel of the comment form.
+```
+form input {
+	width: 300px;
+}
+
+form label {
+	display: block;
+	font-style: italic;
+}
+
+form textarea {
+	width: 500px;
+	height: 150px;
+}
+
+form ul li {
+	list-style-type: none;
+	color: #ff0000;
+}
+```
 
