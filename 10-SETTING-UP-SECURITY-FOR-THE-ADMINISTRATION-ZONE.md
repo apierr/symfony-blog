@@ -90,3 +90,38 @@ class SecurityController extends Controller
 	</section>
 {% endblock %}
 ```
+* Set up the application security
+I will edit the file placed into `app/config/security.yml`
+```
+security:
+    encoders:
+        Symfony\Component\Security\Core\User\User: plaintext
+
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+
+    providers:
+        in_memory:
+            memory:
+                users:
+                    admin: { password: admin, roles: [ 'ROLE_ADMIN' ] }
+
+    firewalls:
+        dev:
+            pattern:  ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        admin_area:
+            pattern: ^/admin/
+            anonymous: ~
+            http_basic:
+            form_login:
+                login_path: blog_admin_security_login
+                check_path: blog_admin_security_logincheck
+
+    access_control:
+        - { path: ^/admin/login, roles: IS_AUTHENTICATED_ANONYMOUSLY}
+        - { path: ^/admin/, roles: ROLE_ADMIN }
+
+```
