@@ -133,4 +133,60 @@ The file `_comment.html.twig` will look like this:
 </article>
 ```
 
+#### Display the number of comments in the posts list.
+To display the number of comments in the posts list I will edit `Post/_post.html.twig`.
+```
+- <a href="{{ path('blog_core_post_show', {slug: post.slug}) }}#comments">
+	{% set count = post.comments | length %}
+	{{ 'post.comments' | transchoice(count) }}
+</a>
+```
+
+#### Test the creation of a new comment
+
+* First we will write the code to test the creation of a new comment.
+I will edit `PostControllerTest.php`.
+```
+    /**
+     * tests create a comment
+     */
+    public function testCreateComment()
+    {
+        $client = static::createClient();
+
+        /* @var Post $post */ 
+        $post = $client->getContainer()
+            ->get('doctrine')
+            ->getManager()
+            ->getRepository('ModelBundle:Post')
+            ->findFirst();
+
+        $crawler = $client->request('GET', '/'.$post->getSlug());
+
+        $buttonCrawlerNode = $crawler->selectButton('Send');
+
+        $form = buttonCrawlerNode->form(array(
+            'blog_modelbundle_comment[authorName]' => 'A humble commenter',
+            'blog_modelbundle_comment[body]' => 'Hi, I am commenting about the following post'
+        ));
+
+        $client->submit($form);
+
+        $this->assertTrue(
+            $client->getResponse()->isRedirect('/'.$post->getSlug()),
+            'There was not redirection after submitting the form'
+        );
+
+        $crawler = $client->followRedirect();
+
+        $this->assertCount(
+            1,
+            $crawler->filter('html:contains("your comment was submitted successfully")').
+            'There was not any confirmation message'
+        );
+    }
+```
+
+#### Form type
+I will create a new form type class based on a Doctrine entity passing the parameter `ModelBundle:Comment` to `php app/console doctrine:generate:form` command.
 
