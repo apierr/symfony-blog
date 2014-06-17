@@ -41,4 +41,13 @@ class SecurityController extends Controller
 			);
 		);
 	}
+
+	/**
+	 * Login check
+	 *
+	 * @Route('/login_check')
+	 */
+	public function loginCheckAction()
+	{
+	}
 }
