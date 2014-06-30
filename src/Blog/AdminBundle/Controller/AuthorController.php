@@ -1,6 +1,6 @@
 <?php
 
-namespace Blog\ModelBundle\Controller;
+namespace Blog\AdminBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Blog\ModelBundle\Entity\Author;
 use Blog\ModelBundle\Form\AuthorType;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * Author controller.
@@ -21,7 +22,9 @@ class AuthorController extends Controller
     /**
      * Lists all Author entities.
      *
-     * @Route("/", name="author")
+     * @return array
+     *
+     * @Route("/")
      * @Method("GET")
      * @Template()
      */
@@ -38,9 +41,13 @@ class AuthorController extends Controller
     /**
      * Creates a new Author entity.
      *
-     * @Route("/", name="author_create")
+     * @param Request $request
+     *
+     * @return array
+     *
+     * @Route("/")
      * @Method("POST")
-     * @Template("ModelBundle:Author:new.html.twig")
+     * @Template("AdminBundle:Author:new.html.twig")
      */
     public function createAction(Request $request)
     {
@@ -84,7 +91,9 @@ class AuthorController extends Controller
     /**
      * Displays a form to create a new Author entity.
      *
-     * @Route("/new", name="author_new")
+     * @return array
+     *
+     * @Route("/new")
      * @Method("GET")
      * @Template()
      */
@@ -102,7 +111,12 @@ class AuthorController extends Controller
     /**
      * Finds and displays a Author entity.
      *
-     * @Route("/{id}", name="author_show")
+     * @param int $id
+     *
+     * @throws NotFoundHttpException
+     * @return array
+     *
+     * @Route("/{id}")
      * @Method("GET")
      * @Template()
      */
@@ -127,7 +141,12 @@ class AuthorController extends Controller
     /**
      * Displays a form to edit an existing Author entity.
      *
-     * @Route("/{id}/edit", name="author_edit")
+     * @param int @id
+     *
+     * @throws NotFoundHttpException
+     * @return array
+     *
+     * @Route("/{id}/edit")
      * @Method("GET")
      * @Template()
      */
@@ -135,6 +154,7 @@ class AuthorController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
+        /** @var Author $entity **/
         $entity = $em->getRepository('ModelBundle:Author')->find($id);
 
         if (!$entity) {
@@ -172,9 +192,16 @@ class AuthorController extends Controller
     /**
      * Edits an existing Author entity.
      *
-     * @Route("/{id}", name="author_update")
+     * @param Request $request
+     * @param int     $id
+     *
+     * @throws NotFoundHttpException
+     *
+     * @return array
+     *
+     * @Route("/{id}")
      * @Method("PUT")
-     * @Template("ModelBundle:Author:edit.html.twig")
+     * @Template("AdminBundle:Author:edit.html.twig")
      */
     public function updateAction(Request $request, $id)
     {
@@ -205,7 +232,13 @@ class AuthorController extends Controller
     /**
      * Deletes a Author entity.
      *
-     * @Route("/{id}", name="author_delete")
+     * @param Request $request
+     * @param int     $id
+     *
+     * @throws NotFoundexception
+     * @return array
+     * 
+     * @Route("/{id}")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, $id)

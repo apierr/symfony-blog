@@ -16,4 +16,4 @@ mv src/Blog/ModelBundle/Tests/Controller/AuthorControllerTest.php src/Blog/Admin
 mv src/Blog/ModelBundle/Resources/views/Author src/Blog/AdminBundle/Resources/views/
 ```
 
--
+- I will fix the Coding Standards into the file named `AuthorController.php`
